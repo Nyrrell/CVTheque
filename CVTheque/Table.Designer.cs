@@ -28,8 +28,11 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
       this.SearchBox = new System.Windows.Forms.TextBox();
       this.dataGridView1 = new System.Windows.Forms.DataGridView();
+      this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.BirthDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +60,7 @@
       this.dataGridView1.AllowUserToOrderColumns = true;
       this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
       this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
             this.LastName,
             this.FirstName,
             this.BirthDate,
@@ -69,69 +73,99 @@
       this.dataGridView1.Location = new System.Drawing.Point(12, 41);
       this.dataGridView1.Name = "dataGridView1";
       this.dataGridView1.ReadOnly = true;
+      this.dataGridView1.RowHeadersVisible = false;
       this.dataGridView1.RowTemplate.Height = 25;
-      this.dataGridView1.Size = new System.Drawing.Size(1040, 508);
+      this.dataGridView1.Size = new System.Drawing.Size(1153, 508);
       this.dataGridView1.TabIndex = 4;
       this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+      this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
+      // 
+      // Id
+      // 
+      this.Id.HeaderText = "Id";
+      this.Id.Name = "Id";
+      this.Id.ReadOnly = true;
+      this.Id.Visible = false;
       // 
       // LastName
       // 
+      this.LastName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
       this.LastName.HeaderText = "Nom";
       this.LastName.Name = "LastName";
       this.LastName.ReadOnly = true;
+      this.LastName.Width = 59;
       // 
       // FirstName
       // 
+      this.FirstName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
       this.FirstName.HeaderText = "Prénom";
       this.FirstName.Name = "FirstName";
       this.FirstName.ReadOnly = true;
+      this.FirstName.Width = 74;
       // 
       // BirthDate
       // 
+      this.BirthDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
       this.BirthDate.HeaderText = "Né le";
       this.BirthDate.Name = "BirthDate";
       this.BirthDate.ReadOnly = true;
+      this.BirthDate.Width = 59;
       // 
       // Age
       // 
+      this.Age.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
       this.Age.HeaderText = "Age";
       this.Age.Name = "Age";
       this.Age.ReadOnly = true;
+      this.Age.Width = 53;
       // 
       // MobilePhone
       // 
+      this.MobilePhone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
       this.MobilePhone.HeaderText = "Tél. portable";
       this.MobilePhone.Name = "MobilePhone";
       this.MobilePhone.ReadOnly = true;
+      this.MobilePhone.Width = 96;
       // 
       // Email
       // 
+      this.Email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
       this.Email.HeaderText = "Email";
       this.Email.Name = "Email";
       this.Email.ReadOnly = true;
+      this.Email.Width = 61;
       // 
       // Profil
       // 
+      this.Profil.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
       this.Profil.HeaderText = "Profil";
       this.Profil.Name = "Profil";
       this.Profil.ReadOnly = true;
+      this.Profil.Width = 60;
       // 
       // City
       // 
+      this.City.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+      dataGridViewCellStyle1.NullValue = "\"NULL\"";
+      this.City.DefaultCellStyle = dataGridViewCellStyle1;
       this.City.HeaderText = "Ville";
       this.City.Name = "City";
       this.City.ReadOnly = true;
+      this.City.Width = 54;
       // 
       // Skills
       // 
       this.Skills.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+      dataGridViewCellStyle2.NullValue = "NULL";
+      dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+      this.Skills.DefaultCellStyle = dataGridViewCellStyle2;
       this.Skills.HeaderText = "Compétences";
       this.Skills.Name = "Skills";
       this.Skills.ReadOnly = true;
       // 
       // button1
       // 
-      this.button1.Location = new System.Drawing.Point(977, 11);
+      this.button1.Location = new System.Drawing.Point(1090, 11);
       this.button1.Name = "button1";
       this.button1.Size = new System.Drawing.Size(75, 23);
       this.button1.TabIndex = 5;
@@ -143,7 +177,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1064, 561);
+      this.ClientSize = new System.Drawing.Size(1177, 561);
       this.Controls.Add(this.button1);
       this.Controls.Add(this.dataGridView1);
       this.Controls.Add(this.SearchBox);
@@ -160,6 +194,8 @@
     #endregion
     private TextBox SearchBox;
     private DataGridView dataGridView1;
+    private Button button1;
+    private DataGridViewTextBoxColumn Id;
     private DataGridViewTextBoxColumn LastName;
     private DataGridViewTextBoxColumn FirstName;
     private DataGridViewTextBoxColumn BirthDate;
@@ -169,6 +205,5 @@
     private DataGridViewTextBoxColumn Profil;
     private DataGridViewTextBoxColumn City;
     private DataGridViewTextBoxColumn Skills;
-    private Button button1;
   }
 }
