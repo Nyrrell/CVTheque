@@ -1,5 +1,4 @@
-using CVTheque.services;
-using Microsoft.VisualBasic.FileIO;
+using CVTheque.WindowForm;
 
 namespace CVTheque
 {

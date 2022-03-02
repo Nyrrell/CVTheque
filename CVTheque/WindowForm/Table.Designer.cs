@@ -1,4 +1,4 @@
-﻿namespace CVTheque
+﻿namespace CVTheque.WindowForm
 {
   partial class Table
   {
@@ -42,16 +42,20 @@
       this.Profil = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.City = new System.Windows.Forms.DataGridViewTextBoxColumn();
       this.Skills = new System.Windows.Forms.DataGridViewTextBoxColumn();
-      this.button1 = new System.Windows.Forms.Button();
+      this.editBtn = new System.Windows.Forms.Button();
+      this.LabelSearch = new System.Windows.Forms.Label();
+      this.NewRow = new System.Windows.Forms.Button();
+      this.export = new System.Windows.Forms.Button();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.SuspendLayout();
       // 
       // SearchBox
       // 
-      this.SearchBox.Location = new System.Drawing.Point(12, 12);
+      this.SearchBox.Location = new System.Drawing.Point(90, 12);
       this.SearchBox.Name = "SearchBox";
-      this.SearchBox.Size = new System.Drawing.Size(148, 23);
+      this.SearchBox.Size = new System.Drawing.Size(250, 23);
       this.SearchBox.TabIndex = 3;
+      this.SearchBox.TextChanged += new System.EventHandler(this.SearchBox_TextChanged);
       // 
       // dataGridView1
       // 
@@ -70,14 +74,14 @@
             this.Profil,
             this.City,
             this.Skills});
-      this.dataGridView1.Location = new System.Drawing.Point(12, 41);
+      this.dataGridView1.Location = new System.Drawing.Point(12, 49);
       this.dataGridView1.Name = "dataGridView1";
       this.dataGridView1.ReadOnly = true;
       this.dataGridView1.RowHeadersVisible = false;
       this.dataGridView1.RowTemplate.Height = 25;
-      this.dataGridView1.Size = new System.Drawing.Size(1153, 508);
+      this.dataGridView1.Size = new System.Drawing.Size(1153, 500);
       this.dataGridView1.TabIndex = 4;
-      this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+      this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
       this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
       // 
       // Id
@@ -163,28 +167,59 @@
       this.Skills.Name = "Skills";
       this.Skills.ReadOnly = true;
       // 
-      // button1
+      // editBtn
       // 
-      this.button1.Location = new System.Drawing.Point(1090, 11);
-      this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(75, 23);
-      this.button1.TabIndex = 5;
-      this.button1.Text = "button1";
-      this.button1.UseVisualStyleBackColor = true;
-      this.button1.Click += new System.EventHandler(this.button1_Click_1);
+      this.editBtn.Location = new System.Drawing.Point(364, 12);
+      this.editBtn.Name = "editBtn";
+      this.editBtn.Size = new System.Drawing.Size(75, 23);
+      this.editBtn.TabIndex = 5;
+      this.editBtn.Text = "Afficher";
+      this.editBtn.UseVisualStyleBackColor = true;
+      this.editBtn.Click += new System.EventHandler(this.editBtn_Click_1);
+      // 
+      // LabelSearch
+      // 
+      this.LabelSearch.AutoSize = true;
+      this.LabelSearch.Location = new System.Drawing.Point(16, 15);
+      this.LabelSearch.Name = "LabelSearch";
+      this.LabelSearch.Size = new System.Drawing.Size(68, 15);
+      this.LabelSearch.TabIndex = 6;
+      this.LabelSearch.Text = "Recherche :";
+      // 
+      // NewRow
+      // 
+      this.NewRow.Location = new System.Drawing.Point(445, 12);
+      this.NewRow.Name = "NewRow";
+      this.NewRow.Size = new System.Drawing.Size(75, 23);
+      this.NewRow.TabIndex = 7;
+      this.NewRow.Text = "Nouveau";
+      this.NewRow.UseVisualStyleBackColor = true;
+      this.NewRow.Click += new System.EventHandler(this.NewRow_Click);
+      // 
+      // export
+      // 
+      this.export.Location = new System.Drawing.Point(1090, 12);
+      this.export.Name = "export";
+      this.export.Size = new System.Drawing.Size(75, 23);
+      this.export.TabIndex = 8;
+      this.export.Text = "Exporter";
+      this.export.UseVisualStyleBackColor = true;
       // 
       // Table
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1177, 561);
-      this.Controls.Add(this.button1);
+      this.Controls.Add(this.export);
+      this.Controls.Add(this.NewRow);
+      this.Controls.Add(this.LabelSearch);
+      this.Controls.Add(this.editBtn);
       this.Controls.Add(this.dataGridView1);
       this.Controls.Add(this.SearchBox);
       this.MinimumSize = new System.Drawing.Size(1080, 600);
       this.Name = "Table";
       this.Text = "CVTheque";
-      this.Load += new System.EventHandler(this.Form1_Load);
+      this.Shown += new System.EventHandler(this.Table_Shown);
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
@@ -194,7 +229,7 @@
     #endregion
     private TextBox SearchBox;
     private DataGridView dataGridView1;
-    private Button button1;
+    private Button editBtn;
     private DataGridViewTextBoxColumn Id;
     private DataGridViewTextBoxColumn LastName;
     private DataGridViewTextBoxColumn FirstName;
@@ -205,5 +240,8 @@
     private DataGridViewTextBoxColumn Profil;
     private DataGridViewTextBoxColumn City;
     private DataGridViewTextBoxColumn Skills;
+    private Label LabelSearch;
+    private Button NewRow;
+    private Button export;
   }
 }

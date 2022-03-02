@@ -20,26 +20,35 @@ public class CsvParser
     var fileName = @"..\..\..\data\hrdata.csv";
 
     if (!File.Exists(fileName)) return new List<CvModels>();
-    
-    using var streamReader = new StreamReader(fileName, Encoding.GetEncoding("iso-8859-1"));
-    using var csv = new CsvReader(streamReader, new CultureInfo("fr"));
 
-    csv.Context.RegisterClassMap<csvMap>();
-    return csv.GetRecords<CvModels>().ToList();
+    CsvReader csv = null;
+    StreamReader sr;
+    try
+    {
+      sr = new StreamReader(fileName, Encoding.GetEncoding("iso-8859-1"));
+      csv = new CsvReader(sr, new CultureInfo("fr"));
+
+      csv.Context.RegisterClassMap<CsvMap>();
+    }
+    catch (Exception e)
+    {
+      Console.WriteLine(e);
+    }
+    return csv == null ? new List<CvModels>() : csv.GetRecords<CvModels>().ToList();
   }
 }
 
-internal class csvMap : ClassMap<CvModels>
+internal class CsvMap : ClassMap<CvModels>
 {
-  public csvMap()
+  public CsvMap()
   {
     Map(m => m.Id).Name("Id");
-    Map(m => m.FisrtName).Name("Prénom").TypeConverter<NulString>();
+    Map(m => m.FirstName).Name("Prénom").TypeConverter<NulString>();
     Map(m => m.LastName).Name("Nom").TypeConverter<NulString>();
     Map(m => m.Birthdate).Name("Date de naissance").TypeConverter<NulString>();
     Map(m => m.Age).Name("Âge").TypeConverter<NulString>();
-    Map(m => m.Adress).Name("Adresse").TypeConverter<NulString>();
-    Map(m => m.Adress1).Name("Adresse 1").TypeConverter<NulString>();
+    Map(m => m.Address).Name("Adresse").TypeConverter<NulString>();
+    Map(m => m.Address1).Name("Adresse 1").TypeConverter<NulString>();
     Map(m => m.PostalCode).Name("Code postal").TypeConverter<NulString>();
     Map(m => m.City).Name("ville").TypeConverter<NulString>();
     Map(m => m.MobilePhone).Name("Numéro de téléphone portable").TypeConverter<NulString>();

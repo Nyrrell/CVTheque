@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static CVTheque.services.Helpers;
 
 namespace CVTheque.Models
 {
@@ -14,10 +15,10 @@ namespace CVTheque.Models
 
     public int? Id { get; set; }
     public string? LastName { get; set; }
-    public string? FisrtName { get; set; }
+    public string? FirstName { get; set; }
     public string Birthdate { get; set; } = string.Empty;
-    public string Adress { get; set; } = string.Empty;
-    public string Adress1 { get; set; } = string.Empty;
+    public string Address { get; set; } = string.Empty;
+    public string Address1 { get; set; } = string.Empty;
     public string PostalCode { get; set; } = string.Empty;
     public string City { get; set; } = string.Empty;
     public string MobilePhone { get; set; } = string.Empty;
@@ -44,13 +45,10 @@ namespace CVTheque.Models
       get { return _age; }
       set
       {
-        string[] date = Birthdate.Split('/');
-        if (date.Length > 1)
+        var date = GetDate(Birthdate);
+        if (date != null)
         {
-          DateTime bday = new DateTime(Int32.Parse(date[2]), Int32.Parse(date[1]), Int32.Parse(date[0]));
-          DateTime now = DateTime.Today;
-          int age = now.Year - bday.Year;
-          _age = age.ToString();
+          _age = CalculateAge((DateTime) date);
         }
       }
     }
@@ -60,16 +58,16 @@ namespace CVTheque.Models
       get { return _skills; }
       set
       {
-        if (Skill1 != String.Empty) _skills = Skill1;
-        if (Skill2 != String.Empty) _skills += "\n" + Skill2;
-        if (Skill3 != String.Empty) _skills += "\n" + Skill3;
-        if (Skill4 != String.Empty) _skills += "\n" + Skill4;
-        if (Skill5 != String.Empty) _skills += "\n" + Skill5;
-        if (Skill6 != String.Empty) _skills += "\n" + Skill6;
-        if (Skill7 != String.Empty) _skills += "\n" + Skill7;
-        if (Skill8 != String.Empty) _skills += "\n" + Skill8;
-        if (Skill9 != String.Empty) _skills += "\n" + Skill9;
-        if (Skill10 != String.Empty) _skills += "\n" + Skill10;
+        if (Skill1 != string.Empty) _skills = Skill1;
+        if (Skill2 != string.Empty) _skills += "\n" + Skill2;
+        if (Skill3 != string.Empty) _skills += "\n" + Skill3;
+        if (Skill4 != string.Empty) _skills += "\n" + Skill4;
+        if (Skill5 != string.Empty) _skills += "\n" + Skill5;
+        if (Skill6 != string.Empty) _skills += "\n" + Skill6;
+        if (Skill7 != string.Empty) _skills += "\n" + Skill7;
+        if (Skill8 != string.Empty) _skills += "\n" + Skill8;
+        if (Skill9 != string.Empty) _skills += "\n" + Skill9;
+        if (Skill10 != string.Empty) _skills += "\n" + Skill10;
 
       }
     }
