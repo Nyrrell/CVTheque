@@ -5,13 +5,15 @@ namespace CVTheque.WindowForm;
 
 public partial class Formulaire : Form
 {
-  CvModels? model;
+  private string _id;
+  private CvModels? model;
   private bool isNew = true;
   public CvModels Response { get; set; }
 
-  public Formulaire(CvModels? data = null)
+  public Formulaire(string id, CvModels? data = null)
   {
     InitializeComponent();
+    _id = id;
     model = data;
   }
 
@@ -32,13 +34,16 @@ public partial class Formulaire : Form
 
   private void valid_Click(object sender, EventArgs e)
   {
+ 
+
     Response = new CvModels
     {
+      Id = int.Parse(_id),
       FirstName = FirstName.Text,
       LastName = LastName.Text,
-      Age = Age.Text,
       City = City.Text,
       Birthdate = Birthdate.Value.ToShortDateString(),
+      Age = Age.Text,
       PostalCode = PostalCode.Text,
       Address = Adress.Text,
       Address1 = Adress1.Text,
@@ -59,9 +64,10 @@ public partial class Formulaire : Form
       Skill7 = Skill7.Text,
       Skill8 = Skill8.Text,
       Skill9 = Skill9.Text,
-      Skill10 = Skill10.Text
+      Skill10 = Skill10.Text,
+      Skills = ""
     };
-    Close();
+    Dispose();
   }
 
   private void PopulateField()
@@ -92,5 +98,15 @@ public partial class Formulaire : Form
     Skill8.Text = model.Skill8;
     Skill9.Text = model.Skill9;
     Skill10.Text = model.Skill10;
+  }
+
+  private void valid_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+  {
+    if (FirstName.Text == "" || LastName.Text == "" || MobilePhone.Text == "" || Email.Text == "" || Profil.Text == "" || Skill1.Text == "" || Skill2.Text == "" || Skill3.Text == "" || Skill4.Text == "" ||
+        Skill5.Text == "")
+    {
+      MessageBox.Show("Merci de remplir les champs obligatoires !", "Erreur");
+      e.Cancel;
+    }
   }
 }

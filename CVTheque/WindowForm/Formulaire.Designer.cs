@@ -285,9 +285,9 @@
       this.EmailLabel.AutoSize = true;
       this.EmailLabel.Location = new System.Drawing.Point(13, 89);
       this.EmailLabel.Name = "EmailLabel";
-      this.EmailLabel.Size = new System.Drawing.Size(42, 15);
+      this.EmailLabel.Size = new System.Drawing.Size(47, 15);
       this.EmailLabel.TabIndex = 5;
-      this.EmailLabel.Text = "Email :";
+      this.EmailLabel.Text = "Email* :";
       // 
       // Email
       // 
@@ -317,9 +317,9 @@
       this.MobilePhoneLabel.AutoSize = true;
       this.MobilePhoneLabel.Location = new System.Drawing.Point(13, 28);
       this.MobilePhoneLabel.Name = "MobilePhoneLabel";
-      this.MobilePhoneLabel.Size = new System.Drawing.Size(57, 15);
+      this.MobilePhoneLabel.Size = new System.Drawing.Size(62, 15);
       this.MobilePhoneLabel.TabIndex = 1;
-      this.MobilePhoneLabel.Text = "Portable :";
+      this.MobilePhoneLabel.Text = "Portable* :";
       // 
       // MobilePhone
       // 
@@ -529,9 +529,9 @@
       this.label11.AutoSize = true;
       this.label11.Location = new System.Drawing.Point(13, 171);
       this.label11.Name = "label11";
-      this.label11.Size = new System.Drawing.Size(90, 15);
+      this.label11.Size = new System.Drawing.Size(95, 15);
       this.label11.TabIndex = 11;
-      this.label11.Text = "Compétence 5 :";
+      this.label11.Text = "Compétence 5* :";
       // 
       // Skill5
       // 
@@ -545,9 +545,9 @@
       this.label10.AutoSize = true;
       this.label10.Location = new System.Drawing.Point(13, 142);
       this.label10.Name = "label10";
-      this.label10.Size = new System.Drawing.Size(90, 15);
+      this.label10.Size = new System.Drawing.Size(95, 15);
       this.label10.TabIndex = 9;
-      this.label10.Text = "Compétence 4 :";
+      this.label10.Text = "Compétence 4* :";
       // 
       // Skill4
       // 
@@ -561,9 +561,9 @@
       this.label9.AutoSize = true;
       this.label9.Location = new System.Drawing.Point(13, 113);
       this.label9.Name = "label9";
-      this.label9.Size = new System.Drawing.Size(90, 15);
+      this.label9.Size = new System.Drawing.Size(95, 15);
       this.label9.TabIndex = 7;
-      this.label9.Text = "Compétence 3 :";
+      this.label9.Text = "Compétence 3* :";
       // 
       // Skill3
       // 
@@ -577,9 +577,9 @@
       this.label8.AutoSize = true;
       this.label8.Location = new System.Drawing.Point(13, 84);
       this.label8.Name = "label8";
-      this.label8.Size = new System.Drawing.Size(90, 15);
+      this.label8.Size = new System.Drawing.Size(95, 15);
       this.label8.TabIndex = 5;
-      this.label8.Text = "Compétence 2 :";
+      this.label8.Text = "Compétence 2* :";
       // 
       // Skill2
       // 
@@ -593,9 +593,9 @@
       this.Skill1Label.AutoSize = true;
       this.Skill1Label.Location = new System.Drawing.Point(13, 55);
       this.Skill1Label.Name = "Skill1Label";
-      this.Skill1Label.Size = new System.Drawing.Size(90, 15);
+      this.Skill1Label.Size = new System.Drawing.Size(95, 15);
       this.Skill1Label.TabIndex = 3;
-      this.Skill1Label.Text = "Compétence 1 :";
+      this.Skill1Label.Text = "Compétence 1* :";
       // 
       // Skill1
       // 
@@ -609,9 +609,9 @@
       this.ProfilLabel.AutoSize = true;
       this.ProfilLabel.Location = new System.Drawing.Point(13, 26);
       this.ProfilLabel.Name = "ProfilLabel";
-      this.ProfilLabel.Size = new System.Drawing.Size(41, 15);
+      this.ProfilLabel.Size = new System.Drawing.Size(46, 15);
       this.ProfilLabel.TabIndex = 1;
-      this.ProfilLabel.Text = "Profil :";
+      this.ProfilLabel.Text = "Profil* :";
       // 
       // Profil
       // 
@@ -622,6 +622,7 @@
       // 
       // valid
       // 
+      this.valid.DialogResult = System.Windows.Forms.DialogResult.OK;
       this.valid.Location = new System.Drawing.Point(280, 338);
       this.valid.Name = "valid";
       this.valid.Size = new System.Drawing.Size(248, 34);
@@ -629,6 +630,7 @@
       this.valid.Text = "Valider";
       this.valid.UseVisualStyleBackColor = true;
       this.valid.Click += new System.EventHandler(this.valid_Click);
+      this.valid.Validating += new System.ComponentModel.CancelEventHandler(this.valid_Validating);
       // 
       // Formulaire
       // 
