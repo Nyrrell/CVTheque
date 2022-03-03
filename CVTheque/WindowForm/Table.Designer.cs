@@ -29,6 +29,7 @@
     private void InitializeComponent()
     {
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
       this.SearchBox = new System.Windows.Forms.TextBox();
@@ -47,12 +48,13 @@
       this.LabelSearch = new System.Windows.Forms.Label();
       this.NewRow = new System.Windows.Forms.Button();
       this.export = new System.Windows.Forms.Button();
+      this.filterParams = new System.Windows.Forms.ComboBox();
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
       this.SuspendLayout();
       // 
       // SearchBox
       // 
-      this.SearchBox.Location = new System.Drawing.Point(90, 12);
+      this.SearchBox.Location = new System.Drawing.Point(184, 12);
       this.SearchBox.Name = "SearchBox";
       this.SearchBox.Size = new System.Drawing.Size(250, 23);
       this.SearchBox.TabIndex = 3;
@@ -87,6 +89,14 @@
       this.dataGridView1.MultiSelect = false;
       this.dataGridView1.Name = "dataGridView1";
       this.dataGridView1.ReadOnly = true;
+      dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+      dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+      dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+      dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+      dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.MenuHighlight;
+      dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+      dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+      this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
       this.dataGridView1.RowHeadersVisible = false;
       this.dataGridView1.RowTemplate.Height = 25;
       this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -101,6 +111,7 @@
       this.Id.HeaderText = "Id";
       this.Id.Name = "Id";
       this.Id.ReadOnly = true;
+      this.Id.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
       this.Id.Visible = false;
       // 
       // LastName
@@ -119,7 +130,8 @@
       this.FirstName.HeaderText = "Prénom";
       this.FirstName.Name = "FirstName";
       this.FirstName.ReadOnly = true;
-      this.FirstName.Width = 74;
+      this.FirstName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+      this.FirstName.Width = 55;
       // 
       // BirthDate
       // 
@@ -128,7 +140,8 @@
       this.BirthDate.HeaderText = "Né le";
       this.BirthDate.Name = "BirthDate";
       this.BirthDate.ReadOnly = true;
-      this.BirthDate.Width = 59;
+      this.BirthDate.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+      this.BirthDate.Width = 40;
       // 
       // Age
       // 
@@ -146,7 +159,8 @@
       this.MobilePhone.HeaderText = "Tél. portable";
       this.MobilePhone.Name = "MobilePhone";
       this.MobilePhone.ReadOnly = true;
-      this.MobilePhone.Width = 96;
+      this.MobilePhone.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+      this.MobilePhone.Width = 77;
       // 
       // Email
       // 
@@ -155,7 +169,8 @@
       this.Email.HeaderText = "Email";
       this.Email.Name = "Email";
       this.Email.ReadOnly = true;
-      this.Email.Width = 61;
+      this.Email.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+      this.Email.Width = 42;
       // 
       // Profil
       // 
@@ -187,12 +202,13 @@
       this.Skills.HeaderText = "Compétences";
       this.Skills.Name = "Skills";
       this.Skills.ReadOnly = true;
+      this.Skills.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
       // 
       // editBtn
       // 
-      this.editBtn.Location = new System.Drawing.Point(364, 12);
+      this.editBtn.Location = new System.Drawing.Point(524, 12);
       this.editBtn.Name = "editBtn";
-      this.editBtn.Size = new System.Drawing.Size(75, 23);
+      this.editBtn.Size = new System.Drawing.Size(78, 23);
       this.editBtn.TabIndex = 5;
       this.editBtn.Text = "Afficher";
       this.editBtn.UseVisualStyleBackColor = true;
@@ -203,15 +219,15 @@
       this.LabelSearch.AutoSize = true;
       this.LabelSearch.Location = new System.Drawing.Point(16, 15);
       this.LabelSearch.Name = "LabelSearch";
-      this.LabelSearch.Size = new System.Drawing.Size(68, 15);
+      this.LabelSearch.Size = new System.Drawing.Size(63, 15);
       this.LabelSearch.TabIndex = 6;
-      this.LabelSearch.Text = "Recherche :";
+      this.LabelSearch.Text = "Filtrer par :";
       // 
       // NewRow
       // 
-      this.NewRow.Location = new System.Drawing.Point(445, 12);
+      this.NewRow.Location = new System.Drawing.Point(440, 12);
       this.NewRow.Name = "NewRow";
-      this.NewRow.Size = new System.Drawing.Size(75, 23);
+      this.NewRow.Size = new System.Drawing.Size(78, 23);
       this.NewRow.TabIndex = 7;
       this.NewRow.Text = "Nouveau";
       this.NewRow.UseVisualStyleBackColor = true;
@@ -225,12 +241,24 @@
       this.export.TabIndex = 8;
       this.export.Text = "Exporter";
       this.export.UseVisualStyleBackColor = true;
+      this.export.Click += new System.EventHandler(this.export_Click);
+      // 
+      // filterParams
+      // 
+      this.filterParams.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+      this.filterParams.FormattingEnabled = true;
+      this.filterParams.Location = new System.Drawing.Point(83, 12);
+      this.filterParams.Name = "filterParams";
+      this.filterParams.Size = new System.Drawing.Size(95, 23);
+      this.filterParams.Sorted = true;
+      this.filterParams.TabIndex = 9;
       // 
       // Table
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(1177, 561);
+      this.Controls.Add(this.filterParams);
       this.Controls.Add(this.export);
       this.Controls.Add(this.NewRow);
       this.Controls.Add(this.LabelSearch);
@@ -240,6 +268,7 @@
       this.MinimumSize = new System.Drawing.Size(1080, 600);
       this.Name = "Table";
       this.Text = "CVTheque";
+      this.Load += new System.EventHandler(this.Table_Load);
       this.Shown += new System.EventHandler(this.Table_Shown);
       ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
       this.ResumeLayout(false);
@@ -264,5 +293,6 @@
     private DataGridViewTextBoxColumn Profil;
     private DataGridViewTextBoxColumn City;
     private DataGridViewTextBoxColumn Skills;
+    private ComboBox filterParams;
   }
 }

@@ -1,6 +1,9 @@
 using System.ComponentModel;
+using System.Data;
 using CVTheque.Models;
 using System.Diagnostics;
+using System.Globalization;
+using CsvHelper;
 using CsvParser = CVTheque.services.CsvParser;
 
 namespace CVTheque.WindowForm
@@ -8,7 +11,7 @@ namespace CVTheque.WindowForm
   public partial class Table : Form
   {
     private List<CvModels> dataImport;
-    private string _id;
+    private string? _id;
 
     public Table()
     {
@@ -23,8 +26,7 @@ namespace CVTheque.WindowForm
         MessageBox.Show("Impossible d'ouvrir le fichier CSV !", "Erreur");
         return;
       }
-      dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-      // dataGridView1.DataSource = dataImport;
+
       dataImport.ForEach(c =>
       {
         dataGridView1.Rows.Add(
@@ -40,8 +42,6 @@ namespace CVTheque.WindowForm
           c.Skills
         );
       });
-      
-      dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
       dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells[1];
       _id = dataGridView1.CurrentRow.Cells[0].Value.ToString();
     }
@@ -130,6 +130,28 @@ namespace CVTheque.WindowForm
 
     private void SearchBox_TextChanged(object sender, EventArgs e)
     {
+      var txtsearch = (TextBox) sender;
+      var filter = ((KeyValuePair<string, string>) filterParams.SelectedItem).Key;
+
+      if (txtsearch.Text != string.Empty)
+      {
+        foreach (DataGridViewRow row in dataGridView1.Rows)
+        {
+          if (row.Cells[filter].Value.ToString().Trim().ToLower().Contains(txtsearch.Text.Trim().ToLower()))
+          {
+            row.Visible = true;
+          }
+          else
+            row.Visible = false;
+        }
+      }
+      else
+      {
+        foreach (DataGridViewRow row in dataGridView1.Rows)
+        {
+          row.Visible = true;
+        }
+      }
     }
 
     private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -138,6 +160,50 @@ namespace CVTheque.WindowForm
 
       var grid = (DataGridView) sender;
       _id = grid.Rows[e.RowIndex].Cells[0].Value.ToString();
+    }
+
+    private void export_Click(object sender, EventArgs e)
+    {
+      using (var textWriter = File.CreateText(@"C:\Users\User-14\Desktop\NewCsv.csv"))
+      using (var csv = new CsvWriter(textWriter, new CultureInfo("fr")))
+      {
+        // Write columns
+        foreach (DataGridViewTextBoxColumn column in dataGridView1.Columns)
+        {
+          csv.WriteField(column.Name);
+        }
+
+        csv.NextRecord();
+
+        // Write row values
+        foreach (DataGridViewRow row in dataGridView1.Rows)
+        {
+          for (var i = 0; i < dataGridView1.Columns.Count; i++)
+          {
+            csv.WriteField(row.Cells[i].Value.ToString());
+          }
+
+          csv.NextRecord();
+        }
+      }
+    }
+
+    private void Table_Load(object sender, EventArgs e)
+    {
+      dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+      dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
+
+      Dictionary<string, string> filterDictionary = new()
+      {
+        {"Age", "Age"},
+        {"City", "Ville"},
+        {"Skills", "Compétence"}
+      };
+
+      filterParams.DataSource = new BindingSource(filterDictionary, null);
+      filterParams.DisplayMember = "Value";
+      filterParams.ValueMember = "Key";
+      filterParams.SelectedIndex = 0;
     }
   }
 }

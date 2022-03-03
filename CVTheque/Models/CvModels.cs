@@ -58,17 +58,10 @@ namespace CVTheque.Models
       get { return _skills; }
       set
       {
-        if (Skill1 != string.Empty) _skills = Skill1;
-        if (Skill2 != string.Empty) _skills += "\n" + Skill2;
-        if (Skill3 != string.Empty) _skills += "\n" + Skill3;
-        if (Skill4 != string.Empty) _skills += "\n" + Skill4;
-        if (Skill5 != string.Empty) _skills += "\n" + Skill5;
-        if (Skill6 != string.Empty) _skills += "\n" + Skill6;
-        if (Skill7 != string.Empty) _skills += "\n" + Skill7;
-        if (Skill8 != string.Empty) _skills += "\n" + Skill8;
-        if (Skill9 != string.Empty) _skills += "\n" + Skill9;
-        if (Skill10 != string.Empty) _skills += "\n" + Skill10;
-
+        string[] skillsArray = { Skill1, Skill2, Skill3, Skill4, Skill5, Skill6, Skill7, Skill8, Skill9, Skill10 };
+        skillsArray = skillsArray.Where(s => !string.IsNullOrWhiteSpace(s)).ToArray();
+        Array.Sort(skillsArray, string.Compare);
+        _skills = string.Join("\n", skillsArray);
       }
     }
   }
