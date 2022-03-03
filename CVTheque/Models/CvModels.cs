@@ -11,7 +11,6 @@ namespace CVTheque.Models
   public class CvModels
   {
     private string _age = "";
-    private string _skills = "";
 
     public int? Id { get; set; }
     public string? LastName { get; set; }
@@ -53,15 +52,13 @@ namespace CVTheque.Models
       }
     }
 
-    public string Skills
+    internal string Skills
     {
-      get { return _skills; }
-      set
-      {
+      get {
         string[] skillsArray = { Skill1, Skill2, Skill3, Skill4, Skill5, Skill6, Skill7, Skill8, Skill9, Skill10 };
         skillsArray = skillsArray.Where(s => !string.IsNullOrWhiteSpace(s)).ToArray();
         Array.Sort(skillsArray, string.Compare);
-        _skills = string.Join("\n", skillsArray);
+        return string.Join("\n", skillsArray);
       }
     }
   }

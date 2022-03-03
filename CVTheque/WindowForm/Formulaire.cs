@@ -67,7 +67,6 @@ public partial class Formulaire : Form
       Skill8 = Skill8.Text,
       Skill9 = Skill9.Text,
       Skill10 = Skill10.Text,
-      Skills = ""
     };
     Dispose();
   }

@@ -3,7 +3,10 @@ using System.Data;
 using CVTheque.Models;
 using System.Diagnostics;
 using System.Globalization;
+using System.Text;
+using System.Text.Unicode;
 using CsvHelper;
+using CVTheque.services;
 using CsvParser = CVTheque.services.CsvParser;
 
 namespace CVTheque.WindowForm
@@ -42,6 +45,8 @@ namespace CVTheque.WindowForm
           c.Skills
         );
       });
+      dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+      dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
       dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells[1];
       _id = dataGridView1.CurrentRow.Cells[0].Value.ToString();
     }
@@ -82,7 +87,7 @@ namespace CVTheque.WindowForm
         customer.Skill8 = result.Skill8;
         customer.Skill9 = result.Skill9;
         customer.Skill10 = result.Skill10;
-        customer.Skills = result.Skills;
+      
 
         dataGridView1.Rows.Clear();
         Table_Shown(sender, e);
@@ -137,12 +142,7 @@ namespace CVTheque.WindowForm
       {
         foreach (DataGridViewRow row in dataGridView1.Rows)
         {
-          if (row.Cells[filter].Value.ToString().Trim().ToLower().Contains(txtsearch.Text.Trim().ToLower()))
-          {
-            row.Visible = true;
-          }
-          else
-            row.Visible = false;
+          row.Visible = row.Cells[filter].Value.ToString().Trim().ToLower().Contains(txtsearch.Text.Trim().ToLower());
         }
       }
       else
@@ -164,35 +164,52 @@ namespace CVTheque.WindowForm
 
     private void export_Click(object sender, EventArgs e)
     {
-      using (var textWriter = File.CreateText(@"C:\Users\User-14\Desktop\NewCsv.csv"))
-      using (var csv = new CsvWriter(textWriter, new CultureInfo("fr")))
+      var rows = dataGridView1.Rows;
+      var path = "";
+      var saveAs = new SaveFileDialog
       {
-        // Write columns
-        foreach (DataGridViewTextBoxColumn column in dataGridView1.Columns)
-        {
-          csv.WriteField(column.Name);
-        }
+        Filter = "csv files (*.csv)|*.csv",
+      };
+     
+      if (saveAs.ShowDialog() == DialogResult.OK)
+      {
+        path = saveAs.FileName;
+      }
 
+      if (path == string.Empty) return;
+      try
+      {
+        using var sw = new StreamWriter(path, false, Encoding.GetEncoding("iso-8859-1"));
+        using var csv = new CsvWriter(sw, new CultureInfo("fr"));
+        csv.Context.RegisterClassMap<CsvMap>();
+        csv.WriteHeader<CvModels>();
         csv.NextRecord();
 
-        // Write row values
-        foreach (DataGridViewRow row in dataGridView1.Rows)
+        foreach (DataGridViewRow row in rows)
         {
-          for (var i = 0; i < dataGridView1.Columns.Count; i++)
-          {
-            csv.WriteField(row.Cells[i].Value.ToString());
-          }
-
+          if (!row.Visible) continue;
+          var id = int.Parse(row.Cells[0].Value.ToString());
+          csv.WriteRecord(dataImport.Find(r => r.Id == id));
           csv.NextRecord();
         }
+        csv.Dispose();
+        MessageBox.Show("Exportation du fichier réussi.", "Succes");
+        ProcessStartInfo process = new()
+        {
+          FileName = path,
+          UseShellExecute = true
+        };
+        Process.Start(process);
+      }
+      catch (Exception exception)
+      {
+        Console.WriteLine(exception);
+        MessageBox.Show("Impossible d'exporter le fichier !", "Erreur");
       }
     }
 
     private void Table_Load(object sender, EventArgs e)
     {
-      dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
-      dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Ascending);
-
       Dictionary<string, string> filterDictionary = new()
       {
         {"Age", "Age"},

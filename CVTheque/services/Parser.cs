@@ -65,7 +65,6 @@ internal class CsvMap : ClassMap<CvModels>
     Map(m => m.Skill8).Name("Compétence 8").TypeConverter<NulString>();
     Map(m => m.Skill9).Name("Compétence 9").TypeConverter<NulString>();
     Map(m => m.Skill10).Name("Compétence 10").TypeConverter<NulString>();
-    Map(m => m.Skills).Constant(string.Empty);
     Map(m => m.Website).Name("Site Web").TypeConverter<NulString>();
     Map(m => m.Linkedin).Name("Profil Linkedin").TypeConverter<NulString>();
     Map(m => m.Viadeo).Name("Profil Viadeo").TypeConverter<NulString>();
