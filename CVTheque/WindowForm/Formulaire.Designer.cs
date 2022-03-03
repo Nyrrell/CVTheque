@@ -622,7 +622,6 @@
       // 
       // valid
       // 
-      this.valid.DialogResult = System.Windows.Forms.DialogResult.OK;
       this.valid.Location = new System.Drawing.Point(280, 338);
       this.valid.Name = "valid";
       this.valid.Size = new System.Drawing.Size(248, 34);
@@ -630,7 +629,6 @@
       this.valid.Text = "Valider";
       this.valid.UseVisualStyleBackColor = true;
       this.valid.Click += new System.EventHandler(this.valid_Click);
-      this.valid.Validating += new System.ComponentModel.CancelEventHandler(this.valid_Validating);
       // 
       // Formulaire
       // 

@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
       System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
       this.SearchBox = new System.Windows.Forms.TextBox();
@@ -74,11 +75,21 @@
             this.Profil,
             this.City,
             this.Skills});
+      dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+      dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+      dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+      dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+      dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+      dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+      dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+      this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
       this.dataGridView1.Location = new System.Drawing.Point(12, 49);
+      this.dataGridView1.MultiSelect = false;
       this.dataGridView1.Name = "dataGridView1";
       this.dataGridView1.ReadOnly = true;
       this.dataGridView1.RowHeadersVisible = false;
       this.dataGridView1.RowTemplate.Height = 25;
+      this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
       this.dataGridView1.Size = new System.Drawing.Size(1153, 500);
       this.dataGridView1.TabIndex = 4;
       this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
@@ -86,6 +97,7 @@
       // 
       // Id
       // 
+      this.Id.DataPropertyName = "Id";
       this.Id.HeaderText = "Id";
       this.Id.Name = "Id";
       this.Id.ReadOnly = true;
@@ -94,6 +106,7 @@
       // LastName
       // 
       this.LastName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+      this.LastName.DataPropertyName = "LastName";
       this.LastName.HeaderText = "Nom";
       this.LastName.Name = "LastName";
       this.LastName.ReadOnly = true;
@@ -102,6 +115,7 @@
       // FirstName
       // 
       this.FirstName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+      this.FirstName.DataPropertyName = "FirstName";
       this.FirstName.HeaderText = "Prénom";
       this.FirstName.Name = "FirstName";
       this.FirstName.ReadOnly = true;
@@ -110,6 +124,7 @@
       // BirthDate
       // 
       this.BirthDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+      this.BirthDate.DataPropertyName = "Birthdate";
       this.BirthDate.HeaderText = "Né le";
       this.BirthDate.Name = "BirthDate";
       this.BirthDate.ReadOnly = true;
@@ -118,6 +133,7 @@
       // Age
       // 
       this.Age.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+      this.Age.DataPropertyName = "Age";
       this.Age.HeaderText = "Age";
       this.Age.Name = "Age";
       this.Age.ReadOnly = true;
@@ -126,6 +142,7 @@
       // MobilePhone
       // 
       this.MobilePhone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+      this.MobilePhone.DataPropertyName = "MobilePhone";
       this.MobilePhone.HeaderText = "Tél. portable";
       this.MobilePhone.Name = "MobilePhone";
       this.MobilePhone.ReadOnly = true;
@@ -134,6 +151,7 @@
       // Email
       // 
       this.Email.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+      this.Email.DataPropertyName = "Email";
       this.Email.HeaderText = "Email";
       this.Email.Name = "Email";
       this.Email.ReadOnly = true;
@@ -142,6 +160,7 @@
       // Profil
       // 
       this.Profil.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+      this.Profil.DataPropertyName = "Profil";
       this.Profil.HeaderText = "Profil";
       this.Profil.Name = "Profil";
       this.Profil.ReadOnly = true;
@@ -150,6 +169,7 @@
       // City
       // 
       this.City.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+      this.City.DataPropertyName = "City";
       dataGridViewCellStyle1.NullValue = "\"NULL\"";
       this.City.DefaultCellStyle = dataGridViewCellStyle1;
       this.City.HeaderText = "Ville";
@@ -160,6 +180,7 @@
       // Skills
       // 
       this.Skills.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+      this.Skills.DataPropertyName = "Skills";
       dataGridViewCellStyle2.NullValue = "NULL";
       dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
       this.Skills.DefaultCellStyle = dataGridViewCellStyle2;
@@ -230,6 +251,9 @@
     private TextBox SearchBox;
     private DataGridView dataGridView1;
     private Button editBtn;
+    private Label LabelSearch;
+    private Button NewRow;
+    private Button export;
     private DataGridViewTextBoxColumn Id;
     private DataGridViewTextBoxColumn LastName;
     private DataGridViewTextBoxColumn FirstName;
@@ -240,8 +264,5 @@
     private DataGridViewTextBoxColumn Profil;
     private DataGridViewTextBoxColumn City;
     private DataGridViewTextBoxColumn Skills;
-    private Label LabelSearch;
-    private Button NewRow;
-    private Button export;
   }
 }
