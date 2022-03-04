@@ -14,19 +14,23 @@ public partial class Formulaire : Form
     InitializeComponent();
     _id = id;
     _model = data;
+    Response = null;
   }
 
+  // COMPLETE LES CHAMPS SI C'EST UNE EDITION DE CANDIDAT
   private void Formulaire_Load(object sender, EventArgs e)
   {
     if (_model != null) PopulateField();
   }
 
+  // EVENT LISTENER POUR SET L'AGE AUTOMATIQUEMENT EN FONCTION DE LA DATE CHOISIT 
   private void Birthdate_ValueChanged(object sender, EventArgs e)
   {
     var dateTime = (DateTimePicker) sender;
     Age.Text = CalculateAge(dateTime.Value.Date);
   }
 
+  // LORS DE LA VALIDATION VERIFIE QUE LES CHAMPS REQUIS SOIT REMPLI, SI OUI ENREGISTRE LES DATAS POUR LES AJOUTER AU TABLEAU
   private void valid_Click(object sender, EventArgs e)
   {
     if (FirstName.Text == "" || LastName.Text == "" || MobilePhone.Text == "" || Email.Text == "" ||
@@ -41,10 +45,9 @@ public partial class Formulaire : Form
     {
       Id = int.Parse(_id),
       FirstName = FirstName.Text,
-      LastName = LastName.Text,
-      City = City.Text,
+      LastName = LastName.Text.ToUpper(),
+      City = City.Text.ToUpper(),
       Birthdate = Birthdate.Value.ToShortDateString(),
-      Age = Age.Text,
       PostalCode = PostalCode.Text,
       Address = Adress.Text,
       Address1 = Adress1.Text,
@@ -70,6 +73,7 @@ public partial class Formulaire : Form
     Dispose();
   }
 
+  // METHODE QUI REMPLI LES DIFFERENTS CHAMPS CORRESPONDANT AU CANDIDAT MODIFIER
   private void PopulateField()
   {
     LastName.Text = _model.LastName;

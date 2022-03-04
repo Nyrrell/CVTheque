@@ -4,8 +4,6 @@ namespace CVTheque.Models
 {
   public class CvModels
   {
-    private string _age = "";
-
     public int? Id { get; set; }
     public string? LastName { get; set; }
     public string? FirstName { get; set; }
@@ -35,21 +33,19 @@ namespace CVTheque.Models
 
     public string Age
     {
-      get { return _age; }
-      set
+      get
       {
         var date = GetDate(Birthdate);
-        if (date != null)
-        {
-          _age = CalculateAge((DateTime) date);
-        }
+        if (date != null) return CalculateAge((DateTime) date);
+        return null;
       }
     }
 
     internal string Skills
     {
-      get {
-        string[] skillsArray = { Skill1, Skill2, Skill3, Skill4, Skill5, Skill6, Skill7, Skill8, Skill9, Skill10 };
+      get
+      {
+        string[] skillsArray = {Skill1, Skill2, Skill3, Skill4, Skill5, Skill6, Skill7, Skill8, Skill9, Skill10};
         skillsArray = skillsArray.Where(s => !string.IsNullOrWhiteSpace(s)).ToArray();
         Array.Sort(skillsArray, string.Compare);
         return string.Join("\n", skillsArray);
