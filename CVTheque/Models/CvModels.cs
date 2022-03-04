@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static CVTheque.services.Helpers;
+﻿using static CVTheque.Helpers;
 
 namespace CVTheque.Models
 {

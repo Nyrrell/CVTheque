@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CsvHelper;
+using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 
-namespace CVTheque.services
-{
+namespace CVTheque;
+
   public static class Helpers
   {
     public static string CalculateAge(DateTime birthDay)
@@ -27,5 +25,17 @@ namespace CVTheque.services
       }
       return null;
     }
-  }
+
+    public class NulString : StringConverter
+    {
+        public override object ConvertFromString(string text, IReaderRow row, MemberMapData memberMapData)
+        {
+            if (text == "NULL")
+            {
+                text = string.Empty;
+            }
+
+            return base.ConvertFromString(text, row, memberMapData);
+        }
+    }
 }

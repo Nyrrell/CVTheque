@@ -1,25 +1,24 @@
-﻿using System.ComponentModel;
-using CVTheque.Models;
-using static CVTheque.services.Helpers;
+﻿using CVTheque.Models;
+using static CVTheque.Helpers;
 
 namespace CVTheque.WindowForm;
 
 public partial class Formulaire : Form
 {
   private string _id;
-  private CvModels? model;
-  public CvModels Response { get; set; }
+  private CvModels? _model;
+  public CvModels? Response { get; set; }
 
   public Formulaire(string id, CvModels? data = null)
   {
     InitializeComponent();
     _id = id;
-    model = data;
+    _model = data;
   }
 
   private void Formulaire_Load(object sender, EventArgs e)
   {
-    if (model != null) PopulateField();
+    if (_model != null) PopulateField();
   }
 
   private void Birthdate_ValueChanged(object sender, EventArgs e)
@@ -73,31 +72,31 @@ public partial class Formulaire : Form
 
   private void PopulateField()
   {
-    LastName.Text = model.LastName;
-    FirstName.Text = model.FirstName;
-    Age.Text = model.Age;
-    Birthdate.Value = (DateTime) GetDate(model.Birthdate);
-    City.Text = model.City;
-    PostalCode.Text = model.PostalCode;
-    Adress.Text = model.Address;
-    Adress1.Text = model.Address1;
-    Website.Text = model.Website;
-    Linkedin.Text = model.Linkedin;
-    Viadeo.Text = model.Viadeo;
-    Facebook.Text = model.Facebook;
-    MobilePhone.Text = model.MobilePhone;
-    Phone.Text = model.Phone;
-    Email.Text = model.Email;
-    Profil.Text = model.Profil;
-    Skill1.Text = model.Skill1;
-    Skill2.Text = model.Skill2;
-    Skill3.Text = model.Skill3;
-    Skill4.Text = model.Skill4;
-    Skill5.Text = model.Skill5;
-    Skill6.Text = model.Skill6;
-    Skill7.Text = model.Skill7;
-    Skill8.Text = model.Skill8;
-    Skill9.Text = model.Skill9;
-    Skill10.Text = model.Skill10;
+    LastName.Text = _model.LastName;
+    FirstName.Text = _model.FirstName;
+    Age.Text = _model.Age;
+    Birthdate.Value = (DateTime) GetDate(_model.Birthdate);
+    City.Text = _model.City;
+    PostalCode.Text = _model.PostalCode;
+    Adress.Text = _model.Address;
+    Adress1.Text = _model.Address1;
+    Website.Text = _model.Website;
+    Linkedin.Text = _model.Linkedin;
+    Viadeo.Text = _model.Viadeo;
+    Facebook.Text = _model.Facebook;
+    MobilePhone.Text = _model.MobilePhone;
+    Phone.Text = _model.Phone;
+    Email.Text = _model.Email;
+    Profil.Text = _model.Profil;
+    Skill1.Text = _model.Skill1;
+    Skill2.Text = _model.Skill2;
+    Skill3.Text = _model.Skill3;
+    Skill4.Text = _model.Skill4;
+    Skill5.Text = _model.Skill5;
+    Skill6.Text = _model.Skill6;
+    Skill7.Text = _model.Skill7;
+    Skill8.Text = _model.Skill8;
+    Skill9.Text = _model.Skill9;
+    Skill10.Text = _model.Skill10;
   }
 }
